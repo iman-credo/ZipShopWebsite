@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZipShop Landing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const NavBar = ({ dark = false }) => (
+        <header className={`top-nav ${dark ? 'dark' : ''}`}>
+          <div className="logo-wrap">
+            <div className="logo">Zip<span>Shop</span></div>
+            <small>نرم افزار مدیریت فروشگاه</small>
+          </div>
+          <nav>
+            <a href="#">صفحه اصلی</a>
+            <a href="#features">امکانات</a>
+            <a href="#plans">پلن ها</a>
+            <a href="#contact">ارتباط با ما</a>
+            <a href="#">تماس با ما</a>
+          </nav>
+          <button className={`download-btn ${dark ? 'outlined' : ''}`}>دانلود نسخه رایگان ⭳</button>
+        </header>
+      );
+
+      const FeatureCard = ({ title, icon }) => (
+        <article className="feature-card">
+          <div className="feature-icon" aria-hidden="true">{icon}</div>
+          <h4>{title}</h4>
+          <p>لورم ایپسون، یک متن ساختگی و توضیح در مورد {title}.</p>
+        </article>
+      );
+
+      const App = () => {
+        const [isDarkNav, setIsDarkNav] = React.useState(false);
+
+        React.useEffect(() => {
+          const onScroll = () => {
+            const featuresSection = document.getElementById('features');
+            if (!featuresSection) return;
+
+            const top = featuresSection.offsetTop;
+            const bottom = top + featuresSection.offsetHeight;
+            const trigger = window.scrollY + 120;
+            setIsDarkNav(trigger >= top && trigger < bottom);
+          };
+
+          onScroll();
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll);
+
+          return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+          };
+        }, []);
+
+        return (
+          <main>
+            <NavBar dark={isDarkNav} />
+
+            <section className="hero white-section">
+              <div className="hero-body">
+                <h1>زیپ شاپ ؛ هر آنچه که برای مدیریت کسب و کارتان به آن نیاز دارید</h1>
+                <p>لورم ایپسون، یک متن ساختگی که می تواند در اینجا قرار بگیرد و شبیه آن چیست</p>
+                <div className="mockup"><img src="./Design/LandingSection.png" alt="داشبورد زیپ شاپ" /></div>
+              </div>
+            </section>
+
+            <section id="features" className="dark-section wave-top">
+              <div className="cta-row">
+                <button className="secondary">مشاهده قیمت ها</button>
+                <button className="primary">دانلود نسخه رایگان</button>
+              </div>
+              <div className="features-grid">
+                <div className="feature-text">
+                  <h2>امکانات منحصر به فرد زیپ شاپ</h2>
+                  <p>
+                    نرم افزار زیپ شاپ به صاحبان کسب و کارهای کوچک و رقابتی کمک می‌کند که
+                    بدون درگیر شدن با کارهای روزمره فروش، روی رشد کسب و کارشان تمرکز کنند.
+                  </p>
+                </div>
+                <div className="cards">
+                  <FeatureCard title="رابط کاربری ساده" icon="🛍️" />
+                  <FeatureCard title="محاسبه سود لحظه ای" icon="📊" />
+                  <FeatureCard title="به‌روزرسانی خودکار" icon="🔄" />
+                  <FeatureCard title="انبارگردانی هوشمند" icon="📦" />
+                </div>
+              </div>
+            </section>
+
+            <section id="plans" className="white-section">
+              <h2 className="section-title">لورم ایپسون؛ یک متن ساختگی در مورد پلن ها</h2>
+              <div className="plans">
+                <article className="plan pro">
+                  <h3>پلن پرو</h3>
+                  <p>لورم ایپسون یک متن ساختگی درباره پلن حرفه ای در اینجا قرار میگیرد.</p>
+                  <div className="price">۹۸۵ <span>تومان</span></div>
+                  <ul>
+                    <li>امکان شماره ۱</li><li>امکان شماره ۲</li><li>امکان شماره ۳</li><li>امکان شماره ۴</li><li>امکان شماره ۵</li>
+                  </ul>
+                  <button>ثبت سفارش</button>
+                </article>
+                <article className="plan free">
+                  <h3>پلن رایگان</h3>
+                  <p>لورم ایپسون یک متن ساختگی درباره پلن رایگان در اینجا قرار میگیرد.</p>
+                  <div className="price">رایگان</div>
+                  <ul><li>امکان شماره ۱</li><li>امکان شماره ۲</li></ul>
+                  <button>دریافت نسخه رایگان</button>
+                </article>
+              </div>
+            </section>
+
+            <section id="contact" className="white-section consult">
+              <h2 className="section-title">همه چیز برای رهایی از بی‌نظمی آماده ست!</h2>
+              <div className="consult-grid">
+                <div className="consult-text">
+                  <p>ما در زیپ شاپ امکان مشاوره جهت بهبود کسب و کارهای لورم ایپسونی شما را داریم.</p>
+                  <p>کافیه فرم روبرو رو پر کنید تا همکاران ما باهاتون تماس بگیرن.</p>
+                </div>
+                <form className="consult-form">
+                  <h3>فرم درخواست مشاوره</h3>
+                  <div className="row"><input placeholder="نام و نام خانوادگی خود را وارد کنید..." /><input placeholder="شماره تماس خود را وارد کنید..." /></div>
+                  <textarea rows="4" placeholder="توضیح..." />
+                  <button type="button">ثبت درخواست مشاوره</button>
+                </form>
+              </div>
+            </section>
+
+            <footer className="dark-section footer wave-bottom">
+              <div className="footer-inner">
+                <div className="logo">Zip<span>Shop</span></div>
+                <div className="support">پشتیبانی: واتس اپ | تلگرام | ۰۹۱۲-۳۴۵۶۷</div>
+              </div>
+            </footer>
+          </main>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
