@@ -18,11 +18,8 @@
       const NavBar = ({ dark = false }) => (
         <header className={`top-nav ${dark ? 'dark' : ''}`}>
           <div className="logo-wrap">
-            <img
-              src={dark ? './assets/DarkLogo.svg' : './assets/LightLogo.svg'}
-              alt="ZipShop"
-              className="brand-logo"
-            />
+            <div className="logo">Zip<span>Shop</span></div>
+            <small>نرم افزار مدیریت فروشگاه</small>
           </div>
           <nav>
             <a href="#">صفحه اصلی</a>
@@ -31,7 +28,7 @@
             <a href="#contact">ارتباط با ما</a>
             <a href="#">تماس با ما</a>
           </nav>
-          <button className={`download-btn ${dark ? 'outlined' : ''}`}><span className="download-icon" aria-hidden="true">⬇</span> دانلود نسخه رایگان</button>
+          <button className={`download-btn ${dark ? 'outlined' : ''}`}>دانلود نسخه رایگان ⭳</button>
         </header>
       );
 
@@ -75,7 +72,7 @@
               <div className="hero-body">
                 <h1>زیپ شاپ ؛ هر آنچه که برای مدیریت کسب و کارتان به آن نیاز دارید</h1>
                 <p>لورم ایپسون، یک متن ساختگی که می تواند در اینجا قرار بگیرد و شبیه آن چیست</p>
-                <div className="mockup"><img src="./Design/HeroDashboard.svg" alt="داشبورد زیپ شاپ" /></div>
+                <div className="mockup"><img src="./Design/LandingSection.png" alt="داشبورد زیپ شاپ" /></div>
               </div>
             </section>
 
@@ -141,7 +138,7 @@
 
             <footer className="dark-section footer wave-bottom">
               <div className="footer-inner">
-                <img src="./assets/DarkLogo.svg" alt="ZipShop" className="footer-logo" />
+                <div className="logo">Zip<span>Shop</span></div>
                 <div className="support">پشتیبانی: واتس اپ | تلگرام | ۰۹۱۲-۳۴۵۶۷</div>
               </div>
             </footer>
